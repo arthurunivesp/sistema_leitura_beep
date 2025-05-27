@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Leitura Divertido</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Jogo de Leitura Divertido!</h1>
+
+        <div id="adminSection" class="game-section">
+            <h2>Configurar Fases de Leitura</h2>
+            <p>Use esta seção para inserir o conteúdo do jogo. Não esqueça de clicar em "Salvar Conteúdo" ao terminar!</p>
+            <div class="admin-phase-editor">
+                <label for="phase1Content">Fase 1 (5 letras):</label>
+                <input type="text" id="phase1Content" value="gato">
+                <label for="phase1Explanation">Explicação (Fase 1):</label>
+                <textarea id="phase1Explanation">Esta fase é para praticar a leitura de palavras curtas. Tente identificar todas as letras rapidamente.</textarea>
+            </div>
+            <div class="admin-phase-editor">
+                <label for="phase2Content">Fase 2 (3 palavras):</label>
+                <input type="text" id="phase2Content" value="Casa azul grande">
+                <label for="phase2Explanation">Explicação (Fase 2):</label>
+                <textarea id="phase2Explanation">Aqui, você pratica a leitura de pequenas frases. Tente ler as palavras em sequência, sem interrupções.</textarea>
+            </div>
+            <div class="admin-phase-editor">
+                <label for="phase3Content">Fase 3 (Texto curto):</label>
+                <textarea id="phase3Content">O sol brilha no céu. Os pássaros cantam alegremente pela manhã.</textarea>
+                <label for="phase3Explanation">Explicação (Fase 3):</label>
+                <textarea id="phase3Explanation">Nesta fase, o objetivo é ler um texto curto de forma fluida. Preste atenção à pontuação.</textarea>
+            </div>
+            <div class="admin-phase-editor">
+                <label for="phase4Content">Fase 4 (Texto longo):</label>
+                <textarea id="phase4Content">A borboleta colorida voava entre as flores do jardim, procurando por néctar doce. Ela tinha asas com tons de azul e amarelo, muito bonitas.</textarea>
+                <label for="phase4Explanation">Explicação (Fase 4):</label>
+                <textarea id="phase4Explanation">Este texto é um pouco mais longo. Tente manter a velocidade de leitura e a compreensão do que está acontecendo na história.</textarea>
+            </div>
+            <h3>Fase de Interpretação</h3>
+            <div class="admin-phase-editor">
+                <label for="comprehensionMainText">Texto principal da interpretação:</label>
+                <textarea id="comprehensionMainText">Era uma vez uma pequena coruja que adorava ler livros. Ela passava suas noites na biblioteca da floresta, aprendendo sobre estrelas e rios. Um dia, ela encontrou um mapa antigo que mostrava o caminho para uma árvore mágica de sabedoria.</textarea>
+            </div>
+            <div id="adminQuestionsContainer">
+                <div class="admin-phase-editor">
+                    <label for="question1Admin">Pergunta 1:</label>
+                    <input type="text" id="question1Admin" value="O que a pequena coruja adorava fazer?">
+                    <label for="answer1Admin">Resposta 1 (exata):</label>
+                    <input type="text" id="answer1Admin" value="ler livros">
+                </div>
+                <div class="admin-phase-editor">
+                    <label for="question2Admin">Pergunta 2:</label>
+                    <input type="text" id="question2Admin" value="O que a coruja encontrou um dia?">
+                    <label for="answer2Admin">Resposta 2 (exata):</label>
+                    <input type="text" id="answer2Admin" value="um mapa antigo">
+                </div>
+                <div class="admin-phase-editor">
+                    <label for="question3Admin">Pergunta 3:</label>
+                    <input type="text" id="question3Admin" value="Onde a coruja passava suas noites?">
+                    <label for="answer3Admin">Resposta 3 (exata):</label>
+                    <input type="text" id="answer3Admin" value="na biblioteca da floresta">
+                </div>
+                <div class="admin-phase-editor">
+                    <label for="question4Admin">Pergunta 4:</label>
+                    <input type="text" id="question4Admin" value="Sobre o que ela aprendia na biblioteca?">
+                    <label for="answer4Admin">Resposta 4 (exata):</label>
+                    <input type="text" id="answer4Admin" value="sobre estrelas e rios">
+                </div>
+            </div>
+            <button id="addQuestionButton">Adicionar Mais Perguntas</button>
+            <div class="admin-phase-editor">
+                <label for="comprehensionExplanation">Explicação (Fase de Interpretação):</label>
+                <textarea id="comprehensionExplanation">Nesta fase, o importante é ler o texto com atenção para entender bem a história. As perguntas testam o quanto você conseguiu absorver da leitura. Lembre-se que as respostas precisam ser exatas!</textarea>
+            </div>
+            <button id="saveContentButton">Salvar Conteúdo</button>
+            <p class="save-message" id="saveMessage"></p>
+            <hr>
+            <button id="startPlayForStudentButton">Iniciar Jogo para o Aluno</button>
+        </div>
+
+        <div id="nameInputSection" class="game-section hidden">
+            <h2>Bem-vindo ao Jogo de Leitura!</h2>
+            <p>Antes de começar, por favor, digite seu nome:</p>
+            <input type="text" id="studentNameInput" placeholder="Seu nome aqui" class="name-input">
+            <button id="submitNameButton">Começar a Jogar</button>
+        </div>
+
+        <div id="instructions" class="game-section hidden">
+            <p>Bem-vindo(a) <span id="studentNameDisplay"></span>! Preparado(a) para testar sua velocidade e compreensão?</p>
+            <p>Clique em "Iniciar Jogo" para começar.</p>
+            <button id="startButton">Iniciar Jogo</button>
+        </div>
+
+        <div id="gameplay" class="game-section hidden">
+            <div class="timer-display">Tempo: <span id="timer">00:00</span></div>
+            <div id="readingContent" class="reading-area"></div>
+            <button id="finishReadingButton" class="hidden">Terminei de Ler!</button>
+        </div>
+
+        <div id="comprehension" class="game-section hidden">
+            <h2>Hora da Interpretação!</h2>
+            <div id="comprehensionText" class="comprehension-main-text"></div>
+            <div id="questionsContainer">
+            </div>
+            <button id="submitAnswersButton">Verificar Respostas</button>
+        </div>
+
+        <div id="results" class="game-section hidden">
+            <h2>Resultados Finais</h2>
+            <p id="totalTime"></p>
+            <p id="comprehensionResult"></p>
+            <div id="starRating" class="star-rating"></div>
+            <div id="comprehensionFeedback" class="feedback-area">
+                <h3>Respostas de Interpretação:</h3>
+            </div>
+            <button id="restartButton">Jogar Novamente</button>
+        </div>
+
+    </div>
+
+    <div id="feedbackModal" class="modal hidden">
+        <div class="modal-content">
+            <div id="modalIcon" class="modal-icon"></div>
+            <p id="feedbackMessage"></p>
+            <p id="explanationText" class="hidden"></p>
+            <p id="finalMotivationMessage" class="final-message hidden"></p>
+
+            <button id="retryPhaseButton" class="hidden">Tentar Novamente</button>
+            <button id="showExplanationButton" class="hidden">Ver Explicação</button>
+            <button id="continueGameButton" class="hidden">Continuar Jogo</button>
+            <button id="closeFinalResultsModalButton" class="hidden">Entendi!</button>
+        </div>
+    </div>
+
+    <audio id="timerBeep" src="assets/sounds/beep.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+

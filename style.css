@@ -1,0 +1,433 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f8ff; /* Light blue background */
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.game-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    position: relative; /* Necessário para o modal */
+}
+
+h1 {
+    color: #4CAF50; /* Green */
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+h2 {
+    color: #2196F3; /* Blue */
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+h3 { /* Estilo para o título das respostas no final */
+    color: #424242;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.game-section {
+    margin-bottom: 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.hidden {
+    display: none !important; /* Adiciona !important para garantir que sobrescreve outras regras */
+}
+
+button {
+    background-color: #008CBA; /* Blue */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #005f7c;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#startButton {
+    background-color: #4CAF50; /* Green */
+}
+
+#startButton:hover {
+    background-color: #45a049;
+}
+
+#finishReadingButton, #submitAnswersButton {
+    background-color: #f44336; /* Red */
+}
+
+#finishReadingButton:hover, #submitAnswersButton:hover {
+    background-color: #da190b;
+}
+
+#nextPhaseButton, #continueGameButton { /* Adicionado continueGameButton aqui */
+    background-color: #ff9800; /* Orange */
+}
+
+#nextPhaseButton:hover, #continueGameButton:hover {
+    background-color: #e68a00;
+}
+
+#restartButton {
+    background-color: #673AB7; /* Deep Purple */
+}
+
+#restartButton:hover {
+    background-color: #512da8;
+}
+
+#saveContentButton {
+    background-color: #8BC34A; /* Light Green */
+}
+
+#saveContentButton:hover {
+    background-color: #689F38;
+}
+
+#retryPhaseButton { /* Novo botão de tentar novamente */
+    background-color: #2196F3; /* Blue */
+}
+
+#retryPhaseButton:hover {
+    background-color: #0d8bf2;
+}
+
+#showExplanationButton { /* Novo botão de explicação */
+    background-color: #9C27B0; /* Purple */
+}
+
+#showExplanationButton:hover {
+    background-color: #7b1fa2;
+}
+
+#startPlayForStudentButton { /* Novo botão para iniciar o jogo para o aluno */
+    background-color: #1976D2; /* Azul mais escuro */
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 1.3em;
+}
+
+#startPlayForStudentButton:hover {
+    background-color: #1565C0;
+}
+
+#addQuestionButton { /* Estilo para o novo botão de adicionar perguntas */
+    background-color: #4CAF50;
+    margin-top: 15px;
+}
+
+#addQuestionButton:hover {
+    background-color: #45a049;
+}
+
+#closeFinalResultsModalButton { /* Novo botão para fechar o modal de resultados finais */
+    background-color: #4CAF50; /* Green */
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 1.3em;
+}
+
+#closeFinalResultsModalButton:hover {
+    background-color: #45a049;
+}
+
+
+.timer-display {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    background-color: #e0f2f7;
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.reading-area {
+    font-size: 1.6em;
+    line-height: 1.6;
+    min-height: 100px;
+    background-color: #e8f5e9; /* Light green */
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: left;
+    color: #333;
+    border: 1px dashed #a5d6a7;
+}
+
+/* Estilo para o texto principal da interpretação */
+.comprehension-main-text {
+    font-size: 1.6em; /* Aumentado o tamanho da fonte */
+    line-height: 1.6;
+    min-height: 100px;
+    background-color: #ffe0b2; /* Um tom de laranja mais claro */
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: left;
+    color: #333;
+    border: 1px dashed #ffb74d;
+}
+
+.question-block {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.question-block p {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.question-block input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    font-size: 1.1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.question-block input[type="text"]:focus {
+    border-color: #2196F3;
+    outline: none;
+}
+
+#totalTime, #comprehensionResult {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Styles for Admin Section */
+#adminSection {
+    margin-top: 0px; /* Removendo o margin-top, já que será a primeira seção */
+    background-color: #e3f2fd; /* Light blue */
+    border: 1px solid #90caf9;
+}
+
+.admin-phase-editor {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.admin-phase-editor label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #3f51b5; /* Indigo */
+}
+
+.admin-phase-editor input[type="text"],
+.admin-phase-editor textarea {
+    width: calc(100% - 22px); /* Adjust for padding and border */
+    padding: 10px;
+    border: 1px solid #bbdefb;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.admin-phase-editor textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.admin-phase-editor input[type="text"]:focus,
+.admin-phase-editor textarea:focus {
+    border-color: #2196F3;
+    outline: none;
+}
+
+.save-message {
+    color: #4CAF50;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed; /* Posição fixa na tela */
+    z-index: 1000; /* Acima de todo o resto */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.modal-content p {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#explanationText {
+    background-color: #e0f7fa;
+    border: 1px solid #b2ebf2;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 1.1em;
+    line-height: 1.5;
+    margin-top: 20px;
+    color: #006064;
+}
+
+.modal-content button {
+    margin: 8px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    margin: 30px 0;
+}
+
+/* New styles for feedback area */
+.feedback-area {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #b3e5fc; /* Light blue border */
+    border-radius: 10px;
+    background-color: #e1f5fe; /* Lighter blue background */
+    text-align: left;
+}
+
+.feedback-area p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.feedback-area p.correct {
+    color: #2e7d32; /* Darker green */
+    font-weight: bold;
+}
+
+.feedback-area p.incorrect {
+    color: #c62828; /* Darker red */
+    font-weight: bold;
+}
+
+/* Estilos para as estrelas */
+.star-rating {
+    font-size: 2.5em; /* Tamanho das estrelas */
+    color: #FFD700; /* Cor ouro para as estrelas */
+    margin-top: 20px;
+    margin-bottom: 10px;
+    letter-spacing: 5px; /* Espaçamento entre as estrelas */
+}
+
+/* NOVO ESTILO PARA O CAMPO DE NOME */
+.name-input {
+    width: calc(100% - 40px); /* Ajuste para padding e borda */
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.name-input:focus {
+    border-color: #008CBA;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 140, 186, 0.2);
+}
+
+/* Estilos para a mensagem final dentro do modal */
+.final-message {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 30px;
+    padding: 15px;
+    border-radius: 10px;
+    /* Remover background-color e color daqui, pois serão definidos pelas classes .success/.motivation */
+    border: 1px solid; /* A cor da borda será definida pelas classes */
+    line-height: 1.4;
+}
+
+/* Estilos para mensagem de sucesso/motivação */
+.final-message.success {
+    background-color: #e8f5e9; /* Light green */
+    color: #2e7d32; /* Darker green */
+    border-color: #c8e6c9;
+}
+
+.final-message.motivation {
+    background-color: #fff3e0; /* Light orange */
+    color: #e65100; /* Darker orange */
+    border-color: #ffe0b2;
+}
+
+/* NOVO ESTILO PARA O ÍCONE NO MODAL */
+.modal-icon {
+    font-size: 4em; /* Tamanho do ícone */
+    margin-bottom: 15px;
+    line-height: 1; /* Remove espaço extra abaixo do ícone */
+}
+
+.modal-icon.success-icon {
+    color: #4CAF50; /* Verde para sucesso */
+    /* Exemplo de ícone: '🎉' */
+}
+
+.modal-icon.motivation-icon {
+    color: #ff9800; /* Laranja para motivação */
+    /* Exemplo de ícone: '🚀' */
+}
+
+
